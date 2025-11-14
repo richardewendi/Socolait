@@ -1,0 +1,14 @@
+:root {
+    --color-primary: #007bff; /* Bleu */
+    --color-primary-light: #e6f0ff;
+    --color-success: #28a745; /* Vert */
+    --color-success-light: #e6fae8;
+    --color-danger: #dc3545; /* Rouge */
+    --color-info: #17a2b8; /* Cyan */
+    
+    --color-text-dark: #333;
+    --color-text-light: #666;
+    --color-bg-light: #f4f7f6;
+    
+    --font-family-base: 'Arial', sans-serif;
+}

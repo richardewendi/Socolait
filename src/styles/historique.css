@@ -1,0 +1,106 @@
+/* Historique.css */
+
+/* Conteneur principal */
+.historique-container {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Titre */
+.historique-container h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #1a73e8;
+}
+
+/* Table responsive */
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* Style général de la table */
+.releves-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+}
+
+/* En-tête de table */
+.releves-table thead tr {
+    background-color: #1a73e8;
+    color: #fff;
+    text-align: left;
+}
+
+.releves-table th,
+.releves-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+/* Lignes de table */
+.releves-table tbody tr {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.releves-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.releves-table tbody tr:hover {
+    background-color: #e8f0fe;
+}
+
+/* Colonne consommation */
+.conso-cell {
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+/* Messages d'erreur ou de chargement */
+p {
+    font-size: 1rem;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Media Queries pour tablette */
+@media (max-width: 1024px) {
+    .historique-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .releves-table th,
+    .releves-table td {
+        padding: 10px 12px;
+    }
+}
+
+/* Media Queries pour mobile */
+@media (max-width: 768px) {
+    .historique-container {
+        padding: 10px;
+    }
+
+    .historique-container h2 {
+        font-size: 1.3rem;
+    }
+
+    .releves-table th,
+    .releves-table td {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+
+    /* Pour très petits écrans, la table peut défiler horizontalement */
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
