@@ -1,106 +1,170 @@
-/* Historique.css */
-
-/* Conteneur principal */
+/* General Container Styling */
 .historique-container {
     padding: 20px;
-    margin: 0 auto;
-    max-width: 1200px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Titre */
 .historique-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2em;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #1a73e8;
+    justify-content: center;
+    gap: 12px;
 }
 
-/* Table responsive */
+/* Button Container */
+.historique-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Button Styles */
+.btn-retour,
+.export-buttons button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-retour {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.btn-retour:hover {
+    background-color: #7f8c8d;
+}
+
+.export-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.export-buttons button {
+    color: white;
+}
+
+.export-buttons button[title="PDF"] { background-color: #e74c3c; }
+.export-buttons button[title="Excel"] { background-color: #27ae60; }
+.export-buttons button[title="Word"] { background-color: #3498db; }
+
+.export-buttons button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.export-buttons button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* Table Styling */
 .table-responsive {
     overflow-x: auto;
 }
-
-/* Style général de la table */
 .releves-table {
     width: 100%;
     border-collapse: collapse;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    background-color: #fff;
-}
-
-/* En-tête de table */
-.releves-table thead tr {
-    background-color: #1a73e8;
-    color: #fff;
     text-align: left;
 }
 
 .releves-table th,
 .releves-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+    padding: 15px;
+    border-bottom: 1px solid #ecf0f1;
 }
 
-/* Lignes de table */
-.releves-table tbody tr {
-    transition: background-color 0.2s ease-in-out;
-}
-
-.releves-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+.releves-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #34495e;
+    text-transform: uppercase;
+    font-size: 0.85em;
 }
 
 .releves-table tbody tr:hover {
-    background-color: #e8f0fe;
+    background-color: #f1f5f8;
 }
 
-/* Colonne consommation */
-.conso-cell {
-    font-weight: bold;
-    color: #1a73e8;
-}
+/* Responsive Design */
 
-/* Messages d'erreur ou de chargement */
-p {
-    font-size: 1rem;
-    text-align: center;
-    margin: 20px 0;
-}
-
-/* Media Queries pour tablette */
-@media (max-width: 1024px) {
-    .historique-container h2 {
-        font-size: 1.5rem;
-    }
-
-    .releves-table th,
-    .releves-table td {
-        padding: 10px 12px;
-    }
-}
-
-/* Media Queries pour mobile */
 @media (max-width: 768px) {
-    .historique-container {
-        padding: 10px;
+    .historique-actions {
+        flex-direction: column;
+        align-items: stretch;
     }
-
-    .historique-container h2 {
-        font-size: 1.3rem;
-    }
-
-    .releves-table th,
-    .releves-table td {
-        padding: 8px 10px;
-        font-size: 0.9rem;
-    }
-
-    /* Pour très petits écrans, la table peut défiler horizontalement */
-    .table-responsive {
-        overflow-x: auto;
+    .btn-retour, .export-buttons button {
+        width: 100%;
+        justify-content: center;
     }
 }
+
+/* Mobile View: Transform table to a list of cards */
+@media (max-width: 600px) {
+    .releves-table thead {
+        display: none;
+    }
+
+    .releves-table, .releves-table tbody, .releves-table tr, .releves-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .releves-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ecf0f1;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .releves-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        border: none;
+        border-bottom: 1px solid #ecf0f1;
+    }
+
+    .releves-table td:last-child {
+        border-bottom: none;
+    }
+
+    .releves-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #34495e;
+        margin-right: 10px;
+    }
+}
+
+/* Specific styling for Consommation cell */
+.consommation-cell {
+    font-weight: bold;
+    color: #27ae60; /* A green color for emphasis */
+    background-color: #e6ffee; /* A light green background */
+    border-radius: 4px;
+    padding: 5px 8px;
+    margin: -5px -8px; /* Adjust margin to fill the cell */
+    display: inline-block; /* To apply padding and background */
+}
+

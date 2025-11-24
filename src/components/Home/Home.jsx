@@ -1,7 +1,7 @@
 import React from 'react';
 import CardButton from './CardButton';
 // Simuler l'import d'icônes
-import { FaPlus, FaCamera, FaHistory, FaSignOutAlt } from 'react-icons/fa';
+import { FaPlus, FaCamera, FaHistory, FaSignOutAlt, FaList } from 'react-icons/fa';
 
 const Home = ({ onLogout, onNavigate }) => {
     return (
@@ -33,6 +33,13 @@ const Home = ({ onLogout, onNavigate }) => {
                     title="Historique des Documents"
                     description="Consulter la consommation, les index et les dates des relevés passés."
                     onClick={() => onNavigate('/historique')}
+                />
+                
+                <CardButton
+                    icon={FaList}
+                    title="Liste des Compteurs"
+                    description="Afficher et gérer tous les compteurs enregistrés."
+                    onClick={() => onNavigate('/liste-compteurs')}
                 />
             </div>
         </div>

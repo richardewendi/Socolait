@@ -8,6 +8,8 @@ import Home from './components/Home/Home.jsx';
 import NouveauCompteur from './components/Home/NouveauCompteur.jsx';
 import ReleveCompteur from './components/Releve/ReleveCompteur.jsx';
 import Historique from './components/Historique/Historique.jsx';
+import ListeCompteurs from './components/ListeCompteurs/ListeCompteurs.jsx';
+import ModifierCompteur from './components/Home/ModifierCompteur.jsx';
 
 // Import des Styles
 import './styles/base.css'; 
@@ -78,6 +80,8 @@ const AppContent = () => {
             
             <Route path="/releve" element={<ReleveCompteur />} />
             <Route path="/historique" element={<Historique />} />
+            <Route path="/liste-compteurs" element={<ListeCompteurs />} />
+            <Route path="/modifier-compteur/:id" element={<ModifierCompteur />} />
 
             {/* Redirection par défaut vers Home si la route n'est pas trouvée (et que l'utilisateur est connecté) */}
             <Route path="*" element={<Home onLogout={handleLogout} onNavigate={navigate} />} />

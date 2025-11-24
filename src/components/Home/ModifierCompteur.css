@@ -1,0 +1,113 @@
+/* Form Container Styling */
+.form-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Input Group Styling */
+.new-compteur-form .input-group {
+    margin-bottom: 20px;
+}
+
+.new-compteur-form .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.new-compteur-form .input-group input,
+.new-compteur-form .input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.new-compteur-form .input-group input:focus,
+.new-compteur-form .input-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Button Group Styling */
+.new-compteur-form .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.new-compteur-form .button-group button {
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Primary and Secondary button styles */
+.new-compteur-form .button-group button[type="submit"] {
+    background-color: #27ae60;
+    color: white;
+}
+
+.new-compteur-form .button-group button[type="submit"]:hover {
+    background-color: #229954;
+    transform: translateY(-2px);
+}
+
+.new-compteur-form .button-group button[type="button"] {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+}
+
+.new-compteur-form .button-group button[type="button"]:hover {
+    background-color: #bdc3c7;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        margin: 20px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .new-compteur-form .button-group {
+        flex-direction: column;
+    }
+    .new-compteur-form .button-group button {
+        width: 100%;
+        justify-content: center;
+    }
+}

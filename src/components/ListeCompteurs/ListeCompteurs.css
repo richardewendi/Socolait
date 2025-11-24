@@ -1,0 +1,155 @@
+/* General Container Styling */
+.liste-compteurs-container {
+    padding: 20px;
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Ensures the table respects the border radius */
+}
+
+.liste-compteurs-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+
+/* Button Styles */
+.btn-home {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-home:hover {
+    background-color: #2980b9;
+}
+
+.btn-edit, .btn-delete {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-right: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #f1c40f;
+    color: #fff;
+}
+
+.btn-edit:hover {
+    background-color: #f39c12;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+
+/* Table Styling */
+.compteurs-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.compteurs-table th,
+.compteurs-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.compteurs-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #34495e;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
+
+.compteurs-table tbody tr:hover {
+    background-color: #f1f5f8;
+}
+
+/* Responsive Design for Table */
+
+/* Tablet View */
+@media (max-width: 768px) {
+    .liste-compteurs-container {
+        margin: 10px;
+        padding: 15px;
+    }
+    .compteurs-table th,
+    .compteurs-table td {
+        padding: 12px;
+        font-size: 0.95em;
+    }
+}
+
+/* Mobile View: Transform table to a list of cards */
+@media (max-width: 600px) {
+    .compteurs-table thead {
+        display: none; /* Hide table headers */
+    }
+
+    .compteurs-table, .compteurs-table tbody, .compteurs-table tr, .compteurs-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .compteurs-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ecf0f1;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        background-color: #fff;
+    }
+
+    .compteurs-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+        border: none;
+        border-bottom: 1px solid #ecf0f1;
+    }
+
+    .compteurs-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* Add labels using ::before pseudo-element */
+    .compteurs-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #34495e;
+        margin-right: 10px;
+    }
+
+    .compteurs-table td[data-label="Actions"] {
+        justify-content: flex-start; /* Align buttons to the start */
+    }
+}

@@ -5,7 +5,7 @@ router.get("/", async (req, res) => {
             SELECT 
                 r.id, 
                 c.numero_compteur, 
-                c.code_bare, 
+                c.code_barre, 
                 r.date_releve, 
                 r.ancien_index, 
                 r.nouvel_index,
