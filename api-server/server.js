@@ -16,17 +16,16 @@ app.use(express.static(path.join(__dirname, '../dist')));
 // Exemple d'API
 app.get('/api/compteurs/barcode/:barcode', (req, res) => {
   const { barcode } = req.params;
-  // Exemple de réponse
   res.json({
     compteur: {
       barcode,
-      statut: 'actif', // Ajoute ici la propriété "statut"
+      statut: 'actif',
     },
   });
 });
 
-// Route catch-all pour React (toutes les autres routes)
-app.get('/*', (req, res) => {
+// Route catch-all pour React (Express 5 compatible)
+app.get('/:path(*)', (req, res) => {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
