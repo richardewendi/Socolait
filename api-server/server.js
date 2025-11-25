@@ -28,6 +28,11 @@ app.post('/api/compteurs', (req, res) => {
   res.status(201).json({ id_compteur, statut: 'créé' });
 });
 
+// GET tous les compteurs
+app.get('/api/compteurs', (req, res) => {
+  res.json(compteurs);
+});
+
 // GET Ancien index
 app.get('/api/compteurs/:id', (req, res) => {
   const { id } = req.params;
