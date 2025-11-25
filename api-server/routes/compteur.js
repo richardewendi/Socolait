@@ -83,30 +83,40 @@ router.get("/:id", async (req, res) => {
 
 // ➤ Ajouter un compteur
 router.post("/", async (req, res) => {
-    const {
+  const {
+    numero_compteur,
+    code_barre,
+    adresse_installation,
+    type_compteur,
+    diametre_nominal,
+    date_installation,
+    statut = "actif"
+  } = req.body;
+
+  try {
+    const result = await pool.query(
+      `INSERT INTO compteurs 
+        (numero_compteur, code_barre, adresse_installation, type_compteur,  diametre_nominal, date_installation, statut)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       RETURNING *`,
+      [
         numero_compteur,
         code_barre,
         adresse_installation,
         type_compteur,
         diametre_nominal,
-        date_installation
-    } = req.body;
+        date_installation,
+        statut
+      ]
+    );
 
-    try {
-        const result = await pool.query(
-            `INSERT INTO compteurs 
-                (numero_compteur, code_barre, adresse_installation, type_compteur,  diametre_nominal, date_installation)
-             VALUES ($1, $2, $3, $4, $5, $6)
-             RETURNING *`,
-            [numero_compteur, code_barre, adresse_installation, type_compteur, diametre_nominal, date_installation]
-        );
-
-        res.json(result.rows[0]); // Retourne l'objet complet avec id_compteur auto-généré
-    } catch (err) {
-        console.error("Erreur lors de l'ajout du compteur:", err.message);
-        res.status(500).send(err.message);
-    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Erreur lors de l'ajout du compteur:", err.message);
+    res.status(500).send(err.message);
+  }
 });
+
 
 // DELETE : Supprimer un compteur par son ID
 router.delete("/:id", async (req, res) => {
