@@ -47,7 +47,7 @@ app.get('/api/compteurs/barcode/:barcode', (req, res) => {
 });
 
 // Catch-all pour SPA
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(FRONT_PATH, 'index.html'));
 });
 
