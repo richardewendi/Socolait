@@ -27,7 +27,7 @@ let releves = [];   // tableau des relevés
 
 // POST Nouveau Compteur
 app.post('/api/compteurs', (req, res) => {
-  const { id_compteur, adresse_installation, type_compteur, Diamètre_nominale, date_installation } = req.body;
+  const { id_compteur,numero_compteur,code_barre,adresse_installation, type_compteur, Diamètre_nominale, date_installation } = req.body;
   
   const nouveauCompteur = {
     id_compteur: id_compteur || Date.now().toString(),
