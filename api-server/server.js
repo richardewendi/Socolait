@@ -4,15 +4,16 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000;
 
+// Pour pouvoir utiliser __dirname avec ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Servir les fichiers statiques de ton dossier "projet"
-app.use(express.static(path.join(__dirname, '../compteur_eau')));
+// Servir les fichiers statiques de la racine
+app.use(express.static(path.join(__dirname, '..')));
 
-// Ton API
+// Exemple d'API
 app.get('/api/compteurs/barcode/:barcode', (req, res) => {
   const { barcode } = req.params;
   res.json({
@@ -23,12 +24,12 @@ app.get('/api/compteurs/barcode/:barcode', (req, res) => {
   });
 });
 
-// Catch-all (Express 5 compatible)
+// Catch-all pour React ou autre SPA
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../compteur_eau/index.html'));
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
-// Lancer serveur
+// Lancer le serveur
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
