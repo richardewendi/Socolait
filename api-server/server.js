@@ -19,13 +19,13 @@ app.get('/api/compteurs/barcode/:barcode', (req, res) => {
   res.json({
     compteur: {
       barcode,
-      statut: 'actif',
+      statut: 'actif', // Propriété ajoutée
     },
   });
 });
 
 // Route catch-all pour React (Express 5 compatible)
-app.get('/:path(*)', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(__dirname, '../dist', 'index.html'));
 });
 
