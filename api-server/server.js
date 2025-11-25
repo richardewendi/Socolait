@@ -44,7 +44,7 @@ app.post('/api/compteurs', (req, res) => {
 
 // GET tous les compteurs
 app.get('/api/compteurs', (req, res) => {
-  res.json(compteurs);
+  res.json({ compteurs });
 });
 
 // GET un compteur par ID
