@@ -31,6 +31,8 @@ app.post('/api/compteurs', (req, res) => {
   
   const nouveauCompteur = {
     id_compteur: id_compteur || Date.now().toString(),
+    numero_compteur,
+    code_barre,
     adresse_installation,
     type_compteur,
     Diamètre_nominale,
