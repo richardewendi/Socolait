@@ -3,7 +3,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import compteurRoutes from "./routes/compteur.js"; 
-import releveRoutes from "./routes/releve.js"; 
+import releveRoutes from "./routes/releve.routes.js"; 
 import cors from "cors";
 
 const app = express();
