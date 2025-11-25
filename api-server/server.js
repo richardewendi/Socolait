@@ -10,8 +10,12 @@ const PORT = process.env.PORT || 10000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Servir les fichiers statiques de la racine
-app.use(express.static(path.join(__dirname, '..')));
+// CHEMIN DU BUILD
+// CRA -> build/      Vite -> dist/
+const FRONT_PATH = path.join(__dirname, '../dist'); // ou '../build' si CRA
+
+// Servir les fichiers statiques du build
+app.use(express.static(FRONT_PATH));
 
 // Exemple d'API
 app.get('/api/compteurs/barcode/:barcode', (req, res) => {
@@ -24,9 +28,9 @@ app.get('/api/compteurs/barcode/:barcode', (req, res) => {
   });
 });
 
-// Catch-all pour React ou autre SPA
+// Catch-all pour SPA
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));
+  res.sendFile(path.join(FRONT_PATH, 'index.html'));
 });
 
 // Lancer le serveur
