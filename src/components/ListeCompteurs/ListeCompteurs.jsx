@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash, FaHome } from 'react-icons/fa';
 import Modal from '../UI/Modal'; // Import Modal
 import './ListeCompteurs.css';
+import { API_BASE_URL } from '../../api';
 
 const ListeCompteurs = () => {
     const [compteurs, setCompteurs] = useState([]);
@@ -18,7 +19,7 @@ const ListeCompteurs = () => {
     const fetchCompteurs = async () => {
         // No need to set loading true here as it's handled in the initial load
         try {
-            const response = await fetch('http://localhost:3000/api/compteurs');
+            const response = await fetch(`${API_BASE_URL}/compteurs`);
             if (!response.ok) {
                 throw new Error('Erreur lors de la récupération des données');
             }
@@ -56,7 +57,7 @@ const ListeCompteurs = () => {
     const confirmDelete = async () => {
         if (counterToDelete) {
             try {
-                const response = await fetch(`http://localhost:3000/api/compteurs/${counterToDelete}`, {
+                const response = await fetch(`${API_BASE_URL}/compteurs/${counterToDelete}`, {
                     method: 'DELETE',
                 });
                 if (!response.ok) {

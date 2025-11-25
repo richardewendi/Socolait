@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaCheck } from 'react-icons/fa'; // Added icons
 import "../../styles/saisieManuelle.css";
+import { API_BASE_URL } from "../../api";
 
 function SaisieManuelle() {
   const [compteurs, setCompteurs] = useState([]);
@@ -16,7 +17,7 @@ function SaisieManuelle() {
   const navigate = useNavigate(); // pour navigation
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/compteurs")
+    fetch(`${API_BASE_URL}/compteurs`)
       .then((res) => {
         if (!res.ok) throw new Error(`Erreur réseau : ${res.status}`);
         return res.json();
@@ -46,7 +47,7 @@ function SaisieManuelle() {
       notes,
     };
 
-    fetch("http://localhost:3000/api/releves", {
+    fetch(`${API_BASE_URL}/releves`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

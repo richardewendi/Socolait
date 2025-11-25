@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaSave, FaTimes, FaTag, FaMapMarkerAlt, FaWater, FaCalendarAlt, FaBarcode } from 'react-icons/fa';
 import Modal from '../UI/Modal'; // Import Modal
 import './ModifierCompteur.css';
+import { API_BASE_URL } from '../../api';
 
 const ModifierCompteur = () => {
     const { id } = useParams();
@@ -27,7 +28,7 @@ const ModifierCompteur = () => {
     useEffect(() => {
         const fetchCompteur = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/api/compteurs/${id}`);
+                const response = await fetch(`${API_BASE_URL}/compteurs/${id}`);
                 if (!response.ok) {
                     throw new Error('Compteur non trouvé');
                 }
@@ -55,7 +56,7 @@ const ModifierCompteur = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:3000/api/compteurs/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/compteurs/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),

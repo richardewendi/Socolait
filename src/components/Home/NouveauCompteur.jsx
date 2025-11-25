@@ -3,6 +3,7 @@ import { FaPlusCircle, FaMapMarkerAlt, FaTag, FaCalendarAlt, FaWater, FaBarcode,
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import Modal from '../UI/Modal';
 import './NouveauCompteur.css'; // Import new CSS
+import { API_BASE_URL } from '../../api';
 
 const qrcodeRegionId = "html5qr-reader";
 
@@ -107,7 +108,7 @@ const NouveauCompteur = ({ onCompteurAdded, onCancel }) => {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/api/compteurs', {
+            const response = await fetch(`${API_BASE_URL}/compteurs`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(nouveauCompteurData)

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import { FaArrowLeft, FaRedoAlt, FaCheck } from 'react-icons/fa'; 
 import "../../styles/saisieManuelle.css";
+import { API_BASE_URL } from "../../api";
 
 const qrcodeRegionId = "html5qr-code-full-region";
 
@@ -30,7 +31,7 @@ function Scanner() {
     setError("");
 
     try {
-      const res = await fetch(`http://localhost:3000/api/compteurs/barcode/${barcode}`);
+      const res = await fetch(`${API_BASE_URL}/compteurs/barcode/${barcode}`);
       if (!res.ok) {
         if (res.status === 404) {
           throw new Error("Ce code-barres n'existe pas dans la base de données.");
@@ -152,7 +153,7 @@ function Scanner() {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/api/releves", {
+      const res = await fetch(`${API_BASE_URL}/releves`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

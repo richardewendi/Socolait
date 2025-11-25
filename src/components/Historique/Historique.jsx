@@ -6,6 +6,7 @@ import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import "../../styles/historique.css";
+import { API_BASE_URL } from "../../api";
 
 const Historique = () => {
     const [releves, setReleves] = useState([]);
@@ -17,7 +18,7 @@ const Historique = () => {
     useEffect(() => {
         const fetchReleves = async () => {
             try {
-                const response = await fetch("http://localhost:3000/api/releves");
+                const response = await fetch(`${API_BASE_URL}/releves`);
                 if (!response.ok) {
                     throw new Error(`Erreur ${response.status}: ${response.statusText}`);
                 }
