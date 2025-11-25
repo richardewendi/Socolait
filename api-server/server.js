@@ -1,30 +1,36 @@
-import express from "express";
-import cors from "cors";
-
-import releveRoutes from "./routes/releve.routes.js";
-import compteurRouter from "./routes/compteur.js";
-
-import { pool } from "./db.js";
+// server.js
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app = express();
-app.use(cors());
-app.use(express.json());
+const PORT = process.env.PORT || 3000;
 
-// Test DB
-const testDB = async () => {
-    try {
-        const now = await pool.query("SELECT NOW()");
-        console.log("✅ Connecté à PostgreSQL. Heure DB:", now.rows[0].now);
-    } catch (err) {
-        console.error("❌ Erreur connexion DB:", err.message);
-    }
-};
+// Pour pouvoir utiliser __dirname avec ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Routes API unifiées
-app.use("/api/compteurs", compteurRouter);
-app.use("/api/releves", releveRoutes);
+// Servir les fichiers statiques du build React
+app.use(express.static(path.join(__dirname, '../build')));
 
-app.listen(3000, () => {
-    console.log("🚀 Serveur API sur http://localhost:3000");
-    testDB();
+// Exemple d'API
+app.get('/api/compteurs/barcode/:barcode', (req, res) => {
+  const { barcode } = req.params;
+  // Exemple de réponse
+  res.json({
+    compteur: {
+      barcode,
+      statut: 'actif', // Ajoute ici la propriété "statut"
+    },
+  });
+});
+
+// Route catch-all pour React (toutes les autres routes)
+app.get('/:all(*)', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
+
+// Lancement du serveur
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });
