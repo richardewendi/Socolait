@@ -20,5 +20,6 @@ if (!process.env.DATABASE_URL) {
         host: "dpg-d4ivqv15pdvs7386aqsg-a.oregon-postgres.render.com",
         port: 5432,
         database: "compteur_eau"
+         ssl: { rejectUnauthorized: false }
     });
 }
