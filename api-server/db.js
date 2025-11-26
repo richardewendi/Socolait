@@ -15,9 +15,9 @@ export const pool = new Pool({
 // Fallback pour le développement local si DATABASE_URL n'est pas défini
 if (!process.env.DATABASE_URL) {
     Object.assign(pool.options, {
-        user: "postgres",
-        password: "12340",      // 🔥 Assurez-vous que c'est votre mot de passe local
-        host: "localhost",
+        user: "compteur_eau_user",
+        password: "Hxm9lmmTHlhlAeqlO3iNeN5PCGb9vVsL",      // 🔥 Assurez-vous que c'est votre mot de passe local
+        host: "dpg-d4ivqv15pdvs7386aqsg-a.oregon-postgres.render.com",
         port: 5432,
         database: "compteur_eau"
     });
