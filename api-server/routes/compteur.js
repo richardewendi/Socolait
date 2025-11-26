@@ -112,9 +112,16 @@ router.post("/", async (req, res) => {
 
     res.json(result.rows[0]);
   } catch (err) {
-    console.error("Erreur lors de l'ajout du compteur:", err.toString());
-    res.status(500).send(err.toString());
+    if (err instanceof AggregateError) {
+        console.error("Erreur(s) multiple(s) lors de l'ajout du compteur:");
+        err.errors.forEach((e, i) => console.error(i, e));
+        res.status(500).send(err.errors.map(e => e.message || e).join("; "));
+    } else {
+        console.error("Erreur lors de l'ajout du compteur:", err.message || err);
+        res.status(500).send(err.message || err);
+    }
 }
+
 
 });
 
