@@ -13,7 +13,7 @@ const NouveauCompteur = ({ onCompteurAdded, onCancel }) => {
     const [adresse, setAdresse] = useState('');
     const [indexInitial, setIndexInitial] = useState('');
     const [dateInstallation, setDateInstallation] = useState('');
-    const [typeCompteur, setTypeCompteur] = useState('Eau froide');
+    const [typeCompteur, setTypeCompteur] = useState('Mécanique');
     const [diametreNominal, setDiametreNominal] = useState('');
     const [loading, setLoading] = useState(false);
     const [scanError, setScanError] = useState(null);
