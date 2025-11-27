@@ -27,13 +27,14 @@ ORDER BY r.date_releve DESC;
     }
 });
 
-// Route POST pour ajouter un relevé
 router.post("/", async (req, res) => {
     const { id_compteur, nouvel_index, ancien_index, operateur_id, notes } = req.body;
 
-    if (!id_compteur || nouvel_index == null || ancien_index == null || !operateur_id) {
+    // ✅ correction du test
+    if (id_compteur == null || nouvel_index == null || ancien_index == null || operateur_id == null) {
         return res.status(400).json({ message: "Champs obligatoires manquants." });
     }
+
     if (isNaN(nouvel_index) || isNaN(ancien_index) || isNaN(operateur_id)) {
         return res.status(400).json({ message: "Les index et l'opérateur doivent être des nombres." });
     }
@@ -51,8 +52,8 @@ router.post("/", async (req, res) => {
     }
 
     const date_releve = new Date().toISOString();
-
-    const consommation = parseFloat(nouvel_index) - parseFloat(ancien_index);
+    const consommation = Number(nouvel_index) - Number(ancien_index);
+    const safeNotes = notes ?? null;
 
     try {
         const query = `
@@ -60,12 +61,22 @@ router.post("/", async (req, res) => {
             VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING *;
         `;
-        const result = await pool.query(query, [id_compteur, nouvel_index, ancien_index, consommation, operateur_id, notes, date_releve]);
+        const result = await pool.query(query, [
+            id_compteur,
+            nouvel_index,
+            ancien_index,
+            consommation,
+            operateur_id,
+            safeNotes,
+            date_releve
+        ]);
+
         res.status(201).json({ message: "Relevé ajouté avec succès.", releve: result.rows[0] });
     } catch (err) {
         console.error("Erreur lors de l'insertion du relevé :", err);
         res.status(500).json({ message: "Erreur interne du serveur : insertion relevé" });
     }
 });
+
 
 export default router;
