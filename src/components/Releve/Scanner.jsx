@@ -40,7 +40,7 @@ function Scanner() {
       }
       const data = await res.json();
       setCompteur(data.compteur);
-      setAncienIndex(data.compteur.nouvel_index ?? "");
+      setAncienIndex(data.compteur.nouvel_index ?? 0);
       setSuccess("");
     } catch (err) {
       setError(err.message || "Erreur lors de la recherche du compteur.");
