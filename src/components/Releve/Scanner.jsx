@@ -227,7 +227,7 @@ function Scanner() {
                 Ancien index :
                 <input
                   type="number"
-                  value={ancienIndex === null ? 0 : ancienIndex}
+                  value={ancienIndex}
                   onChange={(e) => setAncienIndex(e.target.value)}
                   required
                   readOnly
