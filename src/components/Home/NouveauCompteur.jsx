@@ -179,9 +179,9 @@ const NouveauCompteur = ({ onCompteurAdded, onCancel }) => {
                     <div className="input-group">
                         <label><FaWater /> Type de Compteur</label>
                         <select value={typeCompteur} onChange={e => setTypeCompteur(e.target.value)}>
-                            <option value="Eau froide">Eau froide</option>
-                            <option value="Eau chaude">Eau chaude</option>
-                            <option value="Irrigation">Irrigation</option>
+                            <option value="Mécanique">Mécanique</option>
+                            <option value="Communicant">Communicant</option>
+                            <option value="Ultrasons">Ultrasons</option>
                         </select>
                     </div>
 
